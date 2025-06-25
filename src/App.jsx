@@ -1,14 +1,20 @@
 import './components/todo/todo.css'
 import './components/todo/TodoNew'
+import { useState } from 'react'
 import TodoNew from './components/todo/TodoNew'
 import TodoData from './components/todo/TodoData'
 
 const App = () => {
 
-  const hoangdung = {
-    name: 'Hoang Dung',
-    age: 20
-  }
+  const [todoList, setTodoList] = useState([
+    {id: 1, name: 'Hoang Dung', age: 20},
+    {id: 2, name: 'Hoang Dang', age: 30}
+  ]);
+
+  // const hoangdung = {
+  //   name: 'Hoang Dung',
+  //   age: 20
+  // }
 
   const addNewTodo = (name) => {
     alert(`Add new todo ${name}`);
@@ -23,8 +29,10 @@ const App = () => {
           addNewTodo={addNewTodo}
         />
         <TodoData 
-          name={hoangdung.name}
-          age={hoangdung.age}
+          // id={todoList.id}
+          // name={todoList.name}
+          // age={todoList.age}
+          todoList={todoList}
         />        
       </div>
     </>
