@@ -7,18 +7,13 @@ import TodoData from './components/todo/TodoData'
 const App = () => {
 
   const [todoList, setTodoList] = useState([
-    {id: 1, name: 'Hoang Dung', age: 20},
-    {id: 2, name: 'Hoang Dang', age: 30}
   ]);
-
-  // const hoangdung = {
-  //   name: 'Hoang Dung',
-  //   age: 20
-  // }
-
   const addNewTodo = (name) => {
-    alert(`Add new todo ${name}`);
+    const newTodo = {id: randomIntInterval(1, 100), name: name, age: 20}
+    setTodoList([...todoList, newTodo]);
   }
+
+  const randomIntInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
   // addNewTodo();
   return (
@@ -29,9 +24,6 @@ const App = () => {
           addNewTodo={addNewTodo}
         />
         <TodoData 
-          // id={todoList.id}
-          // name={todoList.name}
-          // age={todoList.age}
           todoList={todoList}
         />        
       </div>
