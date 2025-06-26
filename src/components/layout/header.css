@@ -1,27 +1,23 @@
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+/* header.css */
+.navbar {
+  display: flex;
+  justify-content: center;
   background-color: #333;
+  padding: 10px 0;
 }
 
-li {
-  float: left;
-}
-
-li a {
-  display: block;
+.navbar .nav-link {
   color: white;
-  text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
+  padding: 14px 20px;
+  transition: background-color 0.3s ease;
 }
 
-li a:hover:not(.active) {
+.navbar .nav-link:hover {
   background-color: #111;
 }
 
-.active {
+.navbar .active {
   background-color: #04AA6D;
+  border-radius: 4px;
 }
