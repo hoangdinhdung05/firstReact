@@ -1,7 +1,7 @@
 import Input from "antd/es/input/Input";
-import { Button } from "antd";
+import { Button, notification } from "antd";
 import { useState } from "react";
-import axios from "axios";
+import { createUserAPI } from "../../services/api.service";
 
 const UserForm = () => {
     const [fullName, setFullName] = useState("");
@@ -10,17 +10,28 @@ const UserForm = () => {
     const [phone, setPhone] = useState("");
 
     const handleClickBtn = async () => {
+
         if (!fullName || !email || !password || !phone) {
-            alert("Please fill in all fields!");
+            notification.error({
+                message: "Error",
+                description: "Please fill in all fields",
+                placement: "topRight",
+                duration: 4
+            });
             return;
         }
 
-        const URL_BACKEND = "http://localhost:8080/api/v1/user";
-        const data = { fullName, email, password, phone };
-
         try {
-            const response = await axios.post(URL_BACKEND, data);
-            console.log("User created successfully:", response.data);
+            const response = await createUserAPI(fullName, email, password, phone);
+
+            if (response.data) {
+                notification.success({
+                    message: "User created successfully!",
+                    description: "User created successfully!",
+                });
+                console.log("User created successfully:", response.data);
+            }
+
             // Reset form
             setFullName("");
             setEmail("");
@@ -28,11 +39,13 @@ const UserForm = () => {
             setPhone("");
         } catch (error) {
             console.error("Error creating user:", error);
+            notification.error({
+                message: "Failed to create user",
+                description: error?.response?.data?.message || "Something went wrong",
+            });
         }
-
-        console.log("Submitted data:", data);
     };
-
+    
     return (
         <div className="user-form" style={{ margin: "20px 0" }}>
             <div style={{ display: "flex", gap: "15px", flexDirection: "column" }}>
