@@ -1,11 +1,11 @@
 import UserTable from "../components/user/user.table"
-import UserFrom from "../components/user/user.from"
+import UserForm from "../components/user/user.form"
 
 const UsersPage = () => {
     return (
         <div style={{padding: "20px 0"}}>
             <h1>Users Page</h1>
-            <UserFrom />
+            <UserForm />
             <UserTable />
         </div>
     )
